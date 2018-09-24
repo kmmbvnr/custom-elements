@@ -32,6 +32,11 @@ if (!priorCustomElements ||
   PatchNode(internals);
   PatchElement(internals);
 
+  window.addEventListener('turbolinks:before-render', (event) => {
+    internals.disconnectTree(document.body);
+    internals.connectTree(event.data.newBody);
+  });
+
   // The main document is always associated with the registry.
   document.__CE_hasRegistry = true;
 
