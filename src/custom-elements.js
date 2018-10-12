@@ -34,7 +34,10 @@ if (!priorCustomElements ||
 
   window.addEventListener('turbolinks:before-render', (event) => {
     internals.disconnectTree(document.body);
-    internals.connectTree(event.data.newBody);
+  });
+
+  window.addEventListener('turbolinks:load', (event) => {
+    internals.connectTree(document.body);
   });
 
   // The main document is always associated with the registry.
